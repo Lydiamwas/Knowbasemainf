@@ -9,21 +9,28 @@
         <li class="nav-item">
           <router-link to="/add" class="nav-link">Add-Doc</router-link>
         </li>
-        <li class="nav-item">
-          <router-link to="/upload" class="nav-link">Upload_Files</router-link>
-        </li>
+        
       </div>
     </nav>
 
     <div class="container mt-3">
       <router-view />
     </div>
+      <div class="container">
+        <h4> Upload Files</h4>
+     </div>
+      <upload></upload>
   </div>
+  
 </template>
 
 <script>
+import Upload from "./components/Upload";
 export default {
-  name: "app",
+  name: "App",
+  components: {
+    Upload
+  }
 };
 </script>
 

@@ -19,11 +19,7 @@ const routes =  [
             name: "add",
             component: () => import("./components/AddKbdoc")
         },
-        {
-            path: "/upload",
-            name: "upload",
-            component: () => import("./components/Upload")
-        }
+       
     ]
 
     const router = createRouter({

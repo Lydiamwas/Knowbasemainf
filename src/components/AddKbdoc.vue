@@ -25,7 +25,11 @@
       </div>
 
       <button @click="saveKbdoc" class="btn btn-success">Submit</button>
+
+
+       
     </div>
+     
 
     <div v-else>
       <h4>Submitted successfully!</h4>
@@ -35,7 +39,9 @@
 </template>
 
 <script>
+
 import KbdocDataService from "../Services/KbdocDataService";
+
 
 export default {
   name: "add-kbdoc",
@@ -50,6 +56,10 @@ export default {
       submitted: false,
     };
   },
+
+
+  
+
   methods: {
     saveKbdoc() {
       var data = {
@@ -74,6 +84,9 @@ export default {
     },
   },
 };
+
+
+
 </script>
 
 
