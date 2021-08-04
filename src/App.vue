@@ -16,22 +16,27 @@
     <div class="container mt-3">
       <router-view />
     </div>
-      <div class="container">
-        <h4> Upload Files</h4>
-     </div>
-      <upload></upload>
+      <div id="app">
+        <Upload/>
+      </div>
   </div>
   
 </template>
 
 <script>
-import Upload from "./components/Upload";
+import Upload from "./components/Upload.vue";
+
 export default {
-  name: "App",
+  name: "app",
   components: {
     Upload
   }
 };
 </script>
+
+<style>
+
+</style>
+
 
 
