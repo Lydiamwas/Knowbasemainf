@@ -6,86 +6,53 @@
         <label for="file">Upload Multiple Files:</label>
         <input
           type="file"
-          name="file"
+          ref="file"
           required
-          multiple
-          id=""
           class="form-control"
           v-on:change="handleFilesUpload()"
         />
       </div>
 
       <div class="form-group">
-        <button class="btn btn-danger btn-block" v-on:click="submitFiles()">Upload Files</button>
+        <button class="btn btn-danger btn-block" v-on:click="submitFiles()">
+          Upload File
+        </button>
       </div>
     </form>
   </div>
 </template>
 
-
 <script>
 import axios from "axios";
 export default {
   name: "Upload",
-  /*
-      Defines the data used by the component
-    */
   data() {
     return {
-      files: []
+      file: "",
     };
   },
-  // mounted() {
-  //   let recaptchaScript = document.createElement("script");
-  //   recaptchaScript.setAttribute(
-  //     "src",
-  //     "https://ajax.googleleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"
-  //   );
-  //   document.head.appendChild(recaptchaScript);
-  // },
 
   methods: {
-    /*
-        Submits all of the files to the server
-      */
+    handleFilesUpload() {
+      const file = this.$refs.file.files[0];
+      this.file = file;
+    },
+
     submitFiles() {
-      /*
-          Initialize the form data
-        */
       let formData = new FormData();
-
-      /*
-          Iteate over any file sent over appending the files
-          to the form data.
-        */
-      for (var i = 0; i < this.files.length; i++) {
-        let file = this.files[i];
-
-        formData.append("files[" + i + "]", file);
-      }
-
-      /*
-          Make the request to the POST /multiple-files URL
-        */
+      formData.append("file", this.file);
       axios
-        .post("/upload", formData, {
+        .post("http://localhost:5000/file/api/file/upload", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
         })
-        .then(function () {
+        .then(function() {
           console.log("SUCCESS!!");
         })
-        .catch(function () {
+        .catch(function() {
           console.log("FAILURE!!");
         });
-    },
-
-    /*
-        Handles a change on the file upload
-      */
-    handleFilesUpload() {
-      this.files = this.$refs.files.files;
     },
   },
 };
