@@ -41,6 +41,7 @@ export default {
     submitFiles() {
       let formData = new FormData();
       formData.append("file", this.file);
+   
       axios
         .post("http://localhost:5000/file/api/file/upload", formData, {
           headers: {

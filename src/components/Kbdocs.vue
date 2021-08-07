@@ -48,6 +48,10 @@
     <button type="submit" class="badge badge-success" @click="updateKbdoc">
       Update
     </button>
+    <br />
+    <button class="badge badge-success mr-2" @click="downloadDoc">
+      Download
+    </button>
     <p>{{ message }}</p>
   </div>
 
@@ -57,10 +61,9 @@
   </div>
 </template>
 
-
 <script>
 import KbdocDataService from "../Services/KbdocDataService";
-
+import axios from "axios";
 export default {
   name: "kbdoc",
   data() {
@@ -76,7 +79,7 @@ export default {
           this.currentKbdoc = response.data;
           console.log(response.data);
         })
-        .catch(e => {
+        .catch((e) => {
           console.log(e);
         });
     },
@@ -105,7 +108,7 @@ export default {
           console.log(response.data);
           this.message = "The kbdoc was updated successfully!";
         })
-        .catch(e => {
+        .catch((e) => {
           console.log(e);
         });
     },
@@ -116,9 +119,29 @@ export default {
           console.log(response.data);
           this.$router.push({ name: "kbdocs" });
         })
-        .catch(e => {
+        .catch((e) => {
           console.log(e);
         });
+    },
+    downloadDoc() {
+      axios({
+        url: `http://localhost:5000/file/api/file/download/${this.currentKbdoc.id}`,
+        method: "GET",
+        responseType: "blob",
+      })
+        .then((res) => {
+          console.log("download", res.data);
+          const fileURL = window.URL.createObjectURL(new Blob([res.data]));
+          console.log("fileURL", fileURL);
+          const fileLink = document.createElement("a");
+          fileLink.href = fileURL;
+          fileLink.download = this.currentKbdoc.name;
+          document.body.appendChild(fileLink);
+          fileLink.click();
+          document.body.removeChild(fileLink);
+          window.URL.revokeObjectURL(fileURL);
+        })
+        .catch((err) => console.error(err));
     },
   },
   mounted() {
@@ -127,7 +150,6 @@ export default {
   },
 };
 </script>
-
 
 <style>
 .edit-form {

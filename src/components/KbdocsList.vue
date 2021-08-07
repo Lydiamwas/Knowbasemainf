@@ -6,19 +6,15 @@
           type="text"
           class="form-control"
           placeholder="Search by title"
-          v-model="title"/>
+          v-model="title"
+        />
         <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button"
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
             @click="searchTitle"
           >
             Search
-          </button>
-        </div>
-        <div class>
-          <button class="btn btn-outline-secondary" type="button"
-            @click="Download"
-          >
-            Download
           </button>
         </div>
       </div>
@@ -48,14 +44,15 @@
           <label><strong>Title:</strong></label> {{ currentKbdoc.title }}
         </div>
         <div>
-          <label><strong>Description:</strong></label> {{ currentKbdoc.description }}
+          <label><strong>Description:</strong></label>
+          {{ currentKbdoc.description }}
         </div>
         <div>
-          <label><strong>Status:</strong></label> {{ currentKbdoc.published ? "Published" : "Pending" }}
+          <label><strong>Status:</strong></label>
+          {{ currentKbdoc.published ? "Published" : "Pending" }}
         </div>
 
-        <a class="badge badge-warning" 
-        :href="'/kbdocs/' + currentKbdoc.id">
+        <a class="badge badge-warning" :href="'/kbdocs/' + currentKbdoc.id">
           Edit
         </a>
       </div>
@@ -87,7 +84,7 @@ export default {
           this.kbdocs = response.data;
           console.log(response.data);
         })
-        .catch(e => {
+        .catch((e) => {
           console.log(e);
         });
     },
@@ -109,7 +106,7 @@ export default {
           console.log(response.data);
           this.refreshList();
         })
-        .catch(e => {
+        .catch((e) => {
           console.log(e);
         });
     },
@@ -120,14 +117,14 @@ export default {
           this.kbdocs = response.data;
           console.log(response.data);
         })
-        .catch(e => {
+        .catch((e) => {
           console.log(e);
         });
-    }
+    },
   },
   mounted() {
     this.retrieveKbdocs();
-  }
+  },
 };
 </script>
 
