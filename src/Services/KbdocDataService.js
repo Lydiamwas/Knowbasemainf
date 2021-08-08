@@ -2,11 +2,11 @@ import http from "../http-common";
 
 class KbdocsDataService {
   getAll() {
-    return http.get("/kbdocs");
+    return http.get("/file/api/file/info");
   }
 
   get(id) {
-    return http.get(`/kbdocs/${id}`);
+    return http.get(`/file/api/file/${id}`);
   }
 
   create(data) {
@@ -26,7 +26,7 @@ class KbdocsDataService {
   }
 
   findByTitle(title) {
-    return http.get(`/kbdocs?title=${title}`);
+    return http.get(`/file/api/file/info?title=${title}`);
   }
 }
 

@@ -1,42 +1,23 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand navbar-dark bg-dark">
-      <router-link to="/" class="navbar-brand">KNOWLEDGEBASE</router-link>
-      <div class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <router-link to="/kbdocs" class="nav-link">SPOMDOCS</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/add" class="nav-link">Add-Doc</router-link>
-        </li>
-        
-      </div>
-    </nav>
-
+    <navbar />
     <div class="container mt-3">
       <router-view />
     </div>
-      <div id="app">
-        <Upload/>
-      </div>
+    <app_footer />
   </div>
-  
 </template>
 
 <script>
-import Upload from "./components/Upload.vue";
-
+import navbar from "./components/nav_bar.vue";
+import app_footer from "./components/footer.vue";
 export default {
   name: "app",
   components: {
-    Upload
-  }
+    navbar,
+    app_footer,
+  },
 };
 </script>
 
-<style>
-
-</style>
-
-
-
+<style></style>
